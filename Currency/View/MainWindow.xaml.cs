@@ -34,13 +34,10 @@ namespace Currency
             switch (flipview.SelectedIndex)
             {
                 case 0:
-                    flipview.BannerText = "Cupcakes!";
                     break;
                 case 1:
-                    flipview.BannerText = "Xbox!";
                     break;
                 case 2:
-                    flipview.BannerText = "Chess!";
                     break;
             }
         }

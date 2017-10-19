@@ -128,7 +128,6 @@ namespace Currency.ViewModel
             oo.curr.Add(c1);
             oo.curr.Add(c2);
             oo.curr.Add(c3);
-
             og.Add(oo);
             
         }
