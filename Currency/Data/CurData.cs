@@ -42,13 +42,13 @@ namespace Currency.Data
                         orgs.Name = el.Attribute("value").Value;
 
                     if (el.Name == "phone" && el.HasAttributes)
-                        orgs.phone = el.Attribute("value").Value;
+                        orgs.Phone = el.Attribute("value").Value;
 
                     if (el.Name == "address" && el.HasAttributes)
-                        orgs.adress = el.Attribute("value").Value;
+                        orgs.Adress = el.Attribute("value").Value;
 
                     if (el.Name == "link" && el.HasAttributes)
-                        orgs.link = el.Attribute("href").Value;
+                        orgs.Link = el.Attribute("href").Value;
 
                     if (el.Name == "region" && el.HasAttributes)
                         orgs.Region = region.First(x => x.Attribute("id").Value == el.Attribute("id").Value).Attribute("title").Value;
