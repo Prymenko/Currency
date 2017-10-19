@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,29 @@ namespace Currency.Data
 {
     public class CurData
     {
-        public static List<Organizations> getDataCurrency()
+        public static ObservableCollection<Cities> getCitiesCurrency()
+        {
+            ObservableCollection<Cities> ocs = new ObservableCollection<Cities>();
+            List<Organizations> lo = getDataCurrency();
+
+            foreach (var l in lo)
+            {
+                ocs.Add(new Cities
+                {
+                    Name = l.City,
+                    Organization = l.Name,
+                    Region = l.Region,
+                    Adress = l.Adress,
+                    Phone = l.Phone,
+                    Link = l.Link,
+                    currencies = l.currencies
+                });
+            }
+
+            return ocs;
+        }
+
+        private static List<Organizations> getDataCurrency()
         {
             string uri = "http://resources.finance.ua/ru/public/currency-cash.xml";
             XDocument doc = XDocument.Load(uri, LoadOptions.None);
@@ -67,7 +90,6 @@ namespace Currency.Data
             List<Currencies> lc = new List<Currencies>();
             try
             {
-
                 foreach (XElement e in el.Elements())
                 {
                     lc.Add(new Currencies
@@ -77,7 +99,6 @@ namespace Currency.Data
                         AR = Convert.ToDouble(e.Attribute("ar").Value.Replace('.', ','))
                     });
                 }
-
             }
             catch (Exception)
             {
