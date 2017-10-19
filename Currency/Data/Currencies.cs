@@ -1,17 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Currency.Data
 {
-    public class Currencies
+    public class Currencies : INotifyPropertyChanged
     {
-        public string id { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
-        public double br { get; set; }
+        private string id;
+        public string ID
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public double ar { get; set; }
+        private double br;
+        public double BR
+        {
+            get
+            {
+                return br;
+            }
+            set
+            {
+                br = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double ar;
+        public double AR{
+            get
+            {
+                return ar;
+            }
+            set
+            {
+                ar = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
