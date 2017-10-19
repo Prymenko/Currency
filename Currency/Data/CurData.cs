@@ -39,22 +39,22 @@ namespace Currency.Data
                         orgs.currencies = getCurrencies(el);
 
                     if (el.Name == "title" && el.HasAttributes)
-                        orgs.name = el.Attribute("value").Value;
+                        orgs.Name = el.Attribute("value").Value;
 
                     if (el.Name == "phone" && el.HasAttributes)
-                        orgs.phone = el.Attribute("value").Value;
+                        orgs.Phone = el.Attribute("value").Value;
 
                     if (el.Name == "address" && el.HasAttributes)
-                        orgs.adress = el.Attribute("value").Value;
+                        orgs.Adress = el.Attribute("value").Value;
 
                     if (el.Name == "link" && el.HasAttributes)
-                        orgs.link = el.Attribute("href").Value;
+                        orgs.Link = el.Attribute("href").Value;
 
                     if (el.Name == "region" && el.HasAttributes)
-                        orgs.region = region.First(x => x.Attribute("id").Value == el.Attribute("id").Value).Attribute("title").Value;
+                        orgs.Region = region.First(x => x.Attribute("id").Value == el.Attribute("id").Value).Attribute("title").Value;
 
                     if (el.Name == "city" && el.HasAttributes)
-                        orgs.city = city.First(x => x.Attribute("id").Value == el.Attribute("id").Value).Attribute("title").Value;
+                        orgs.City = city.First(x => x.Attribute("id").Value == el.Attribute("id").Value).Attribute("title").Value;
                 }
                 currencyData.Add(orgs);
             }
@@ -65,14 +65,22 @@ namespace Currency.Data
         private static List<Currencies> getCurrencies(XElement el)
         {
             List<Currencies> lc = new List<Currencies>();
-            foreach (XElement e in el.Elements())
+            try
             {
-                lc.Add(new Currencies
+
+                foreach (XElement e in el.Elements())
                 {
-                    id = e.Attribute("id").Value,
-                    br = Convert.ToDouble(e.Attribute("br").Value.Replace('.', ',')),
-                    ar = Convert.ToDouble(e.Attribute("ar").Value.Replace('.', ','))
-                });
+                    lc.Add(new Currencies
+                    {
+                        ID = e.Attribute("id").Value,
+                        BR = Convert.ToDouble(e.Attribute("br").Value.Replace('.', ',')),
+                        AR = Convert.ToDouble(e.Attribute("ar").Value.Replace('.', ','))
+                    });
+                }
+
+            }
+            catch (Exception)
+            {
             }
             return lc;
         }
