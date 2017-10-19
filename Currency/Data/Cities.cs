@@ -10,7 +10,7 @@ namespace Currency.Data
 {
     public class Cities : INotifyPropertyChanged
     {
-        string name;
+        string name;  
         public string Name
         {
             get
@@ -24,80 +24,7 @@ namespace Currency.Data
             }
         }
 
-        string region;
-        public string Region
-        {
-            get
-            {
-                return region;
-            }
-            set
-            {
-                region = value;
-                OnPropertyChanged();
-            }
-        }
-
-        string organization;
-        public string Organization
-        {
-            get
-            {
-                return organization;
-            }
-            set
-            {
-                organization = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        string phone;
-        public string Phone
-        {
-            get
-            {
-                return phone;
-            }
-            set
-            {
-                phone = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        string adress;
-        public string Adress
-        {
-            get
-            {
-                return adress;
-            }
-            set
-            {
-                adress = value;
-                OnPropertyChanged();
-            }
-        }
-
-        string link;
-        public string Link
-        {
-            get
-            {
-                return link;
-            }
-            set
-            {
-                link = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public List<Currencies> currencies { get; set; }
-
+        public List<Organizations> organizations { get; set; }
 
         public override string ToString()
         {
@@ -105,6 +32,7 @@ namespace Currency.Data
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

@@ -12,24 +12,19 @@ namespace Currency.Data
     {
         public static ObservableCollection<Cities> getCitiesCurrency()
         {
-            ObservableCollection<Cities> ocs = new ObservableCollection<Cities>();
-            List<Organizations> lo = getDataCurrency();
+            ObservableCollection<Cities> lCities = new ObservableCollection<Cities>();
+            List<Organizations> lo = CurData.getDataCurrency();
 
-            foreach (var l in lo)
+            Cities city = new Cities();
+            foreach (var l in lo.GroupBy(x => x.City))
             {
-                ocs.Add(new Cities
+                lCities.Add(new Cities
                 {
-                    Name = l.City,
-                    Organization = l.Name,
-                    Region = l.Region,
-                    Adress = l.Adress,
-                    Phone = l.Phone,
-                    Link = l.Link,
-                    currencies = l.currencies
+                    Name = l.Key,
+                    organizations = lo.Where(x => x.City == l.Key).ToList()
                 });
             }
-            //
-            return ocs;
+            return lCities;
         }
 
         private static List<Organizations> getDataCurrency()
