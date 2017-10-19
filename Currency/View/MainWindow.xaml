@@ -37,16 +37,13 @@
                            Grid.ColumnSpan="3"
                            Foreground="{DynamicResource WhiteBrush}"
                            Height="200"
-                           ItemsSource="{Binding og[0]}"
+                           ItemsSource="{Binding Selected.curr}"
                            SelectionChanged="FlipView_SelectionChanged">
             <Controls:FlipView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Name}"/>
-                    </Grid>
+                    
+                        <Label Content="{Binding Path=Name}" FontSize="32"/>
+                    
                 </DataTemplate>
             </Controls:FlipView.ItemTemplate>
             </Controls:FlipView>

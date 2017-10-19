@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,10 +11,25 @@ using System.Windows.Controls;
 
 namespace Currency.ViewModel
 {
-    public class Org
+    public class Org : INotifyPropertyChanged
     {
-        public string Name { get; set; }
-        public List<Currency> curr { get; set; } = new List<Currency>();
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<Currency> curr { get; set; } = new ObservableCollection<Currency>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
         public override string ToString()
         {
@@ -21,11 +37,44 @@ namespace Currency.ViewModel
         }
     }
 
-    public class Currency
+    public class Currency : INotifyPropertyChanged
     {
-        public string Name { get; set; }
-        public double buy { get; set; }
-        public double sell { get; set; }
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+        private double buy;
+        public double Buy
+        {
+            get { return buy; }
+            set
+            {
+                buy = value;
+                OnPropertyChanged();
+            }
+        }
+        private double sell;
+        public double Sell
+        {
+            get { return sell; }
+            set
+            {
+                sell = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
         public override string ToString()
         {
@@ -36,30 +85,41 @@ namespace Currency.ViewModel
 
     public class MainViewModel : INotifyPropertyChanged
     {
-        public Org Selected { get; set; } = new Org();
+        public string NN { get; set; } = "Strings";
+
+        private Org selected;
+        public Org Selected
+        {
+            get { return selected; }
+            set
+            {
+                selected = value;
+                OnPropertyChanged();
+            }
+        }
 
         Currency c1 = new Currency
         {
             Name = "USD",
-            buy = 26.6,
-            sell = 12.5
+            Buy = 26.6,
+            Sell = 12.5
         };
 
         Currency c2 = new Currency
         {
             Name = "RUB",
-            buy = 90.6,
-            sell = 16.1
+            Buy = 90.6,
+            Sell = 16.1
         };
 
         Currency c3 = new Currency
         {
             Name = "POL",
-            buy = 21.1,
-            sell = 53.3
+            Buy = 21.1,
+            Sell = 53.3
         };
 
-        public List<Org> og { get; set; } = new List<Org>();
+        public ObservableCollection<Org> og { get; set; } = new ObservableCollection<Org>();
 
         public MainViewModel()
         {
@@ -68,6 +128,7 @@ namespace Currency.ViewModel
             oo.curr.Add(c1);
             oo.curr.Add(c2);
             oo.curr.Add(c3);
+
             og.Add(oo);
             
         }
@@ -76,8 +137,7 @@ namespace Currency.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
     }
