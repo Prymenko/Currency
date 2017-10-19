@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Currency.ViewModel
 {
@@ -53,8 +54,20 @@ namespace Currency.ViewModel
             {
             }            
         }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        RelayCommand refresh;
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                //if (refresh == null)
+                //    refresh = new RelayCommand((x) => _cars.Remove(SelectedCar), (x) => _cars.Count != 0);
+                //return refresh;
+                return null;
+            }
+        }
+
+    public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
