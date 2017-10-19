@@ -85,8 +85,7 @@ namespace Currency.ViewModel
 
     public class MainViewModel : INotifyPropertyChanged
     {
-        public string NN { get; set; } = "Strings";
-
+        
         private Org selected;
         public Org Selected
         {
