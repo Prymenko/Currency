@@ -31,11 +31,24 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="30 15 30 5" Text="Банк" 
+
+        <TextBlock Margin="30 15 30 5" Text="Город" 
                    FontSize="26" Foreground="#FF030044" 
                    FontFamily="Calibri" FontStretch="UltraCondensed" 
                    FontWeight="Light"/>
-        <ComboBox Grid.Row="1" Grid.ColumnSpan="3" 
+
+        <ComboBox Grid.Row="1" 
+                  Margin="30 5 -5 5" ItemsSource="{Binding CollectOrganizations}"
+                  SelectedItem="{Binding Selected}"/>
+
+
+        <TextBlock Grid.Column="1"
+                   Margin="30 15 30 5" Text="Банк" 
+                   FontSize="26" Foreground="#FF030044" 
+                   FontFamily="Calibri" FontStretch="UltraCondensed" 
+                   FontWeight="Light"/>
+
+        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
                   Margin="30 5" ItemsSource="{Binding CollectOrganizations}"
                   SelectedItem="{Binding Selected}"/>
 
@@ -76,10 +89,6 @@
                                HorizontalContentAlignment="Center" 
                                VerticalContentAlignment="Stretch"/>
 
-                        <Controls:ProgressRing Grid.Column="1" 
-                                               Grid.Row="1" 
-                                               IsActive="{Binding Source=IsActive}" />
-                        
                         <Label Grid.Column="2" Content="Продажа"
                                Margin="0 0 40 0"
                                HorizontalContentAlignment="Center" 
@@ -122,7 +131,7 @@
                              Position="Right" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=Width}">
 
                 <m:Map CredentialsProvider="YOUR_BING_MAP_KEY" x:Name="myMap"
-                        />
+                       Center="{Binding CurrentLocation}" ZoomLevel="{Binding Zoom}"/>
 
             </Controls:Flyout>
         </Controls:FlyoutsControl>

@@ -1,6 +1,7 @@
 ﻿using Currency.Data;
 using Currency.Infrastructure;
 using MahApps.Metro.Controls;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,21 +18,14 @@ namespace Currency.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private bool isActive;
-        public bool IsActive
-        {
-            get { return isActive; }
-            set
-            {
-                isActive = value;
-                OnPropertyChanged();
-            }
-        }
+        public Location CurrentLocation { get; set; } = new Location(50.44313043, 30.49511254);
+        public double Zoom { get; set; } = 14;
 
-        public ObservableCollection<Organizations> CollectOrganizations { get; set; }
 
-        private Organizations selected;
-        public Organizations Selected
+        public ObservableCollection<Cities> CollectCities { get; set; }
+
+        private Cities selected;
+        public Cities Selected
         {
             get { return selected; }
             set
@@ -39,38 +33,37 @@ namespace Currency.ViewModel
                 selected = value;
                 OnPropertyChanged();
             }
-        }       
+        }
 
         public MainViewModel()
         {
             try
             {
-                IsActive = true;
-                Thread.Sleep(5000);
-                IsActive = false;
-                CollectOrganizations = new ObservableCollection<Organizations>(CurData.getDataCurrency());
+                CollectCities = new ObservableCollection<Cities>(CurData.getCitiesCurrency());
             }
             catch (Exception)
             {
-            }            
-        }
-
-        RelayCommand refresh;
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                //if (refresh == null)
-                //    refresh = new RelayCommand((x) => _cars.Remove(SelectedCar), (x) => _cars.Count != 0);
-                //return refresh;
-                return null;
             }
         }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+        private RelayCommand refreshCommand;
+        public RelayCommand RefreshCommand
+        {
+            get
+            {
+                return refreshCommand ??
+            (refreshCommand = new RelayCommand(obj =>
+            {
+                Thread.Sleep(5000);
+                this.CollectCities = CurData.getCitiesCurrency();
+            }));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
     }
