@@ -4,8 +4,11 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="Currency" Height="350" Width="525"
+        Title="Курс валют" 
+        Height="350" Width="525"
+        MinHeight="310" MinWidth="440"
                       
         BorderThickness="0" 
         GlowBrush="Black"
@@ -42,7 +45,9 @@
                            IsBannerEnabled="False"
                            MouseHoverBorderThickness="0"
                            ItemsSource="{Binding Selected.curr}"
-                           SelectionChanged="FlipView_SelectionChanged">
+                           SelectedIndex="{Binding Index}">
+            <!--SelectionChanged="FlipView_SelectionChanged"-->
+            
             <Controls:FlipView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -103,4 +108,26 @@
 
 
     </Grid>
+
+
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout x:Name="Map" Header="Карта" Theme="Accent" 
+                             Position="Right" Width="380">
+                
+                <WindowsFormsHost x:Name="MapHost"/>
+                
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <ToggleButton Content="Карта" Foreground="White"
+                          IsChecked="{Binding ElementName=Map, Path=IsOpen}" 
+                          Cursor="AppStarting" FontSize="14"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+
 </Controls:MetroWindow>

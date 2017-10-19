@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using Currency.Infrastructure;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -85,7 +86,18 @@ namespace Currency.ViewModel
 
     public class MainViewModel : INotifyPropertyChanged
     {
-        
+        private int index;
+        public int Index
+        {
+            get { return index; }
+            set
+            {
+                index = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private Org selected;
         public Org Selected
         {
@@ -118,6 +130,13 @@ namespace Currency.ViewModel
             Sell = 53.3
         };
 
+        Currency c4 = new Currency
+        {
+            Name = "ZAY",
+            Buy = 10.6,
+            Sell = 0.109
+        };
+
         public ObservableCollection<Org> og { get; set; } = new ObservableCollection<Org>();
 
         public MainViewModel()
@@ -127,11 +146,12 @@ namespace Currency.ViewModel
             oo.curr.Add(c1);
             oo.curr.Add(c2);
             oo.curr.Add(c3);
+            oo.curr.Add(c4);
             og.Add(oo);
-            
+
+            Index = 0;
         }
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

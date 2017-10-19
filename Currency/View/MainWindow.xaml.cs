@@ -28,18 +28,18 @@ namespace Currency
             InitializeComponent();
         }
 
-        public void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var flipview = ((FlipView)sender);
-            switch (flipview.SelectedIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-            }
-        }
+        //public void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var flipview = ((FlipView)sender);
+        //    switch (flipview.SelectedIndex)
+        //    {
+        //        case 0:
+        //            break;
+        //        case 1:
+        //            break;
+        //        case 2:
+        //            break;
+        //    }
+        //}
     }
 }
