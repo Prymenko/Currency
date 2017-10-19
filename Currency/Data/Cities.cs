@@ -10,7 +10,7 @@ namespace Currency.Data
 {
     public class Cities : INotifyPropertyChanged
     {
-        string name;
+        string name;  
         public string Name
         {
             get
@@ -24,27 +24,15 @@ namespace Currency.Data
             }
         }
 
-        List<Organizations> organization;
-        public List<Organizations> Organization
-        {
-            get
-            {
-                return organization;
-            }
-            set
-            {
-                organization = value;
-                OnPropertyChanged();
-            }
-        }
+        public List<Organizations> organizations { get; set; }
 
-        
         public override string ToString()
         {
             return this.Name;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
