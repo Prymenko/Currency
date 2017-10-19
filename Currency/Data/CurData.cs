@@ -47,10 +47,6 @@ namespace Currency.Data
             from el in doc.Root.Elements("cities").Elements()
             select el;
 
-            IEnumerable<XElement> currencies =
-            from el in doc.Root.Elements("currencies").Elements()
-            select el;
-
             List<Organizations> currencyData = new List<Organizations>();
             foreach (XElement elm in org)
             {

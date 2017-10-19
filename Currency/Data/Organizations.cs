@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Currency.Data
 {
-    
+
     public class Organizations : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -19,7 +19,8 @@ namespace Currency.Data
         }
 
         string name;
-        public string Name {
+        public string Name
+        {
             get
             {
                 return name;
@@ -30,7 +31,36 @@ namespace Currency.Data
                 OnPropertyChanged();
             }
         }
-        
+
+
+        string region;
+        public string Region
+        {
+            get
+            {
+                return region;
+            }
+            set
+            {
+                region = value;
+                OnPropertyChanged();
+            }
+        }
+
+        string city;
+        public string City
+        {
+            get
+            {
+                return city;
+            }
+            set
+            {
+                city = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         string phone;
         public string Phone
@@ -48,7 +78,8 @@ namespace Currency.Data
 
 
         string adress;
-        public string Adress {
+        public string Adress
+        {
             get
             {
                 return adress;
@@ -61,7 +92,8 @@ namespace Currency.Data
         }
 
         string link;
-        public string Link {
+        public string Link
+        {
             get
             {
                 return link;
@@ -74,7 +106,7 @@ namespace Currency.Data
         }
 
         public List<Currencies> currencies { get; set; }
-        
+
 
         public override string ToString()
         {
