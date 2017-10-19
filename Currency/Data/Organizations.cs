@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -56,6 +57,7 @@ namespace Currency.Data
             }
         }
 
+
         string phone;
         public string Phone
         {
@@ -69,6 +71,7 @@ namespace Currency.Data
                 OnPropertyChanged();
             }
         }
+
 
         string adress;
         public string Adress {
@@ -97,6 +100,11 @@ namespace Currency.Data
         }
 
         public List<Currencies> currencies { get; set; }
+        
 
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

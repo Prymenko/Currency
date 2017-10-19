@@ -1,4 +1,5 @@
-﻿using Currency.Infrastructure;
+﻿using Currency.Data;
+using Currency.Infrastructure;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -86,17 +88,17 @@ namespace Currency.ViewModel
 
     public class MainViewModel : INotifyPropertyChanged
     {
-        private int index;
-        public int Index
+        private bool isActive;
+        public bool IsActive
         {
-            get { return index; }
+            get { return isActive; }
             set
             {
-                index = value;
+                isActive = value;
                 OnPropertyChanged();
             }
         }
-
+        public ObservableCollection<Organizations> CollectOrganizations { get; set; }
 
         private Org selected;
         public Org Selected
@@ -141,6 +143,17 @@ namespace Currency.ViewModel
 
         public MainViewModel()
         {
+            try
+            {
+                IsActive = true;
+                Thread.Sleep(5000);
+                IsActive = false;
+                CollectOrganizations = new ObservableCollection<Organizations>(CurData.getDataCurrency());
+            }
+            catch (Exception)
+            {
+
+            }
             Org oo = new Org();
             oo.Name = "Privat";
             oo.curr.Add(c1);
@@ -148,8 +161,7 @@ namespace Currency.ViewModel
             oo.curr.Add(c3);
             oo.curr.Add(c4);
             og.Add(oo);
-
-            Index = 0;
+            
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
