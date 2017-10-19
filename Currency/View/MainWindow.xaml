@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
@@ -108,8 +109,6 @@
                 </DataTemplate>
             </Controls:FlipView.ItemTemplate>
         </Controls:FlipView>
-
-
         
     </Grid>
 
@@ -120,10 +119,11 @@
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="Map" Header="Карта" Theme="Accent" 
-                             Position="Right" Width="380">
-                
-                <WindowsFormsHost x:Name="MapHost"/>
-                
+                             Position="Right" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=Width}">
+
+                <m:Map CredentialsProvider="YOUR_BING_MAP_KEY" x:Name="myMap"
+                        />
+
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
