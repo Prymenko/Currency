@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -56,7 +57,7 @@ namespace Currency.Data
             }
         }
 
-        strin
+        
         public string phone { get; set; }
 
         public string adress { get; set; }
@@ -64,6 +65,11 @@ namespace Currency.Data
         public string link { get; set; }
 
         public List<Currencies> currencies { get; set; }
+        
 
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

@@ -35,7 +35,7 @@
                    FontFamily="Calibri" FontStretch="UltraCondensed" 
                    FontWeight="Light"/>
         <ComboBox Grid.Row="1" Grid.ColumnSpan="3" 
-                  Margin="30 5" ItemsSource="{Binding og}"
+                  Margin="30 5" ItemsSource="{Binding CollectOrganizations}"
                   SelectedItem="{Binding Selected}"/>
 
         <Controls:FlipView x:Name="FlipViewTest"
@@ -76,6 +76,10 @@
                                HorizontalContentAlignment="Center" 
                                VerticalContentAlignment="Stretch"/>
 
+                        <Controls:ProgressRing Grid.Column="1" 
+                                               Grid.Row="1" 
+                                               IsActive="{Binding IsActive}" />
+                        
                         <Label Grid.Column="2" Content="Продажа"
                                Margin="0 0 40 0"
                                HorizontalContentAlignment="Center" 
@@ -107,9 +111,13 @@
         </Controls:FlipView>
 
 
+        
     </Grid>
 
 
+    
+    
+    
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="Map" Header="Карта" Theme="Accent" 

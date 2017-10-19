@@ -57,5 +57,10 @@ namespace Currency.Data
             }
         }
 
+
+        public override string ToString()
+        {
+            return this.ID;
+        }
     }
 }
