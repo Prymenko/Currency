@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Currency.ViewModel;
+using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,26 @@ namespace Currency
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
+            DataContext = new MainViewModel();
             InitializeComponent();
         }
+
+        //public void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var flipview = ((FlipView)sender);
+        //    switch (flipview.SelectedIndex)
+        //    {
+        //        case 0:
+        //            break;
+        //        case 1:
+        //            break;
+        //        case 2:
+        //            break;
+        //    }
+        //}
     }
 }

@@ -1,12 +1,133 @@
-﻿<Window x:Class="Currency.MainWindow"
+﻿<Controls:MetroWindow x:Class="Currency.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Currency.View"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="Currency" Height="350" Width="525">
+        Title="Курс валют" 
+        Height="350" Width="525"
+        MinHeight="310" MinWidth="440"
+                      
+        BorderThickness="0" 
+        GlowBrush="Black"
+        ResizeMode="CanResizeWithGrip"
+
+        WindowTransitionsEnabled="False"
+        WindowStartupLocation="CenterScreen">
+
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="30 15 30 5" Text="Банк" 
+                   FontSize="26" Foreground="#FF030044" 
+                   FontFamily="Calibri" FontStretch="UltraCondensed" 
+                   FontWeight="Light"/>
+        <ComboBox Grid.Row="1" Grid.ColumnSpan="3" 
+                  Margin="30 5" ItemsSource="{Binding og}"
+                  SelectedItem="{Binding Selected}"/>
+
+        <Controls:FlipView x:Name="FlipViewTest"
+                           Grid.Row="2"
+                           Grid.ColumnSpan="3"
+                           Height="200"
+                           IsBannerEnabled="False"
+                           MouseHoverBorderThickness="0"
+                           ItemsSource="{Binding Selected.curr}"
+                           SelectedIndex="{Binding Index}">
+            <!--SelectionChanged="FlipView_SelectionChanged"-->
+            
+            <Controls:FlipView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Покупка"
+                               Margin="40 0 0 0"
+                               HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Stretch"
+                               FontSize="16" FontFamily="Calibri"/>
+                        <Label Grid.Row="1"
+                               Margin="40 10 0 0"
+                               Content="{Binding Path=Buy}" 
+                               FontSize="56" FontFamily="Calibri" 
+                               FontStretch="Expanded" FontWeight="Light" 
+                               Foreground="#FF449AF0" HorizontalAlignment="Center" 
+                               HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Stretch"/>
+
+                        <Label Grid.Column="2" Content="Продажа"
+                               Margin="0 0 40 0"
+                               HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Stretch"
+                               FontSize="16" FontFamily="Calibri"/>
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Margin="0 10 40 0"
+                               Content="{Binding Path=Sell}" 
+                               FontSize="56" FontFamily="Calibri" 
+                               FontStretch="Expanded" FontWeight="Light" 
+                               Foreground="#FF449AF0" HorizontalAlignment="Center" 
+                               HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Stretch"/>
+                        
+                        
+                        <Label Grid.Column="1"
+                               Grid.Row="2"
+                               Content="{Binding Path=Name}" 
+                               FontSize="40" FontFamily="Calibri" 
+                               FontStretch="Expanded" FontWeight="Light" 
+                               Foreground="#FF003163" HorizontalAlignment="Center" 
+                               HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Stretch"/>
+                    </Grid>
+
+                </DataTemplate>
+            </Controls:FlipView.ItemTemplate>
+        </Controls:FlipView>
+
+
     </Grid>
-</Window>
+
+
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout x:Name="Map" Header="Карта" Theme="Accent" 
+                             Position="Right" Width="380">
+                
+                <WindowsFormsHost x:Name="MapHost"/>
+                
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <ToggleButton Content="Карта" Foreground="White"
+                          IsChecked="{Binding ElementName=Map, Path=IsOpen}" 
+                          Cursor="AppStarting" FontSize="14"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+
+</Controls:MetroWindow>
