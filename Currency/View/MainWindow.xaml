@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
@@ -44,8 +45,7 @@
                            Height="200"
                            IsBannerEnabled="False"
                            MouseHoverBorderThickness="0"
-                           ItemsSource="{Binding Selected.curr}"
-                           SelectedIndex="{Binding Index}">
+                           ItemsSource="{Binding Selected.currencies}">
             <!--SelectionChanged="FlipView_SelectionChanged"-->
             
             <Controls:FlipView.ItemTemplate>
@@ -69,7 +69,7 @@
                                FontSize="16" FontFamily="Calibri"/>
                         <Label Grid.Row="1"
                                Margin="40 10 0 0"
-                               Content="{Binding Path=Buy}" 
+                               Content="{Binding Path=BR}" 
                                FontSize="56" FontFamily="Calibri" 
                                FontStretch="Expanded" FontWeight="Light" 
                                Foreground="#FF449AF0" HorizontalAlignment="Center" 
@@ -78,7 +78,7 @@
 
                         <Controls:ProgressRing Grid.Column="1" 
                                                Grid.Row="1" 
-                                               IsActive="{Binding IsActive}" />
+                                               IsActive="{Binding Source=IsActive}" />
                         
                         <Label Grid.Column="2" Content="Продажа"
                                Margin="0 0 40 0"
@@ -88,7 +88,7 @@
                         <Label Grid.Row="1"
                                Grid.Column="2"
                                Margin="0 10 40 0"
-                               Content="{Binding Path=Sell}" 
+                               Content="{Binding Path=AR}" 
                                FontSize="56" FontFamily="Calibri" 
                                FontStretch="Expanded" FontWeight="Light" 
                                Foreground="#FF449AF0" HorizontalAlignment="Center" 
@@ -98,7 +98,7 @@
                         
                         <Label Grid.Column="1"
                                Grid.Row="2"
-                               Content="{Binding Path=Name}" 
+                               Content="{Binding Path=ID}" 
                                FontSize="40" FontFamily="Calibri" 
                                FontStretch="Expanded" FontWeight="Light" 
                                Foreground="#FF003163" HorizontalAlignment="Center" 
@@ -109,8 +109,6 @@
                 </DataTemplate>
             </Controls:FlipView.ItemTemplate>
         </Controls:FlipView>
-
-
         
     </Grid>
 
@@ -121,10 +119,11 @@
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="Map" Header="Карта" Theme="Accent" 
-                             Position="Right" Width="380">
-                
-                <WindowsFormsHost x:Name="MapHost"/>
-                
+                             Position="Right" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=Width}">
+
+                <m:Map CredentialsProvider="YOUR_BING_MAP_KEY" x:Name="myMap"
+                        />
+
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
