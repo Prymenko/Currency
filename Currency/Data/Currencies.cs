@@ -16,6 +16,20 @@ namespace Currency.Data
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string id;
         public string ID
         {

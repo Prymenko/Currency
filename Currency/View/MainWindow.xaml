@@ -32,6 +32,7 @@
         </Grid.RowDefinitions>
 
 
+        
         <TextBlock Margin="30 15 30 5" Text="Город" 
                    FontSize="26" Foreground="#FF030044" 
                    FontFamily="Calibri" FontStretch="UltraCondensed" 
@@ -49,8 +50,8 @@
                    FontWeight="Light"/>
 
         <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
-                  Margin="30 5" ItemsSource="{Binding CollectOrganizations}"
-                  SelectedItem="{Binding Selected}"/>
+                  Margin="30 5" ItemsSource="{Binding Selected.organizations}"
+                  SelectedItem="{Binding Sel_org}"/>
 
         <Controls:FlipView x:Name="FlipViewTest"
                            Grid.Row="2"
@@ -58,7 +59,7 @@
                            Height="200"
                            IsBannerEnabled="False"
                            MouseHoverBorderThickness="0"
-                           ItemsSource="{Binding Selected.currencies}">
+                           ItemsSource="{Binding Sel_org.currencies}">
             <!--SelectionChanged="FlipView_SelectionChanged"-->
             
             <Controls:FlipView.ItemTemplate>

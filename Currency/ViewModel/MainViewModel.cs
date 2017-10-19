@@ -35,14 +35,26 @@ namespace Currency.ViewModel
             }
         }
 
+        private Organizations sel_org;
+        public Organizations Sel_org
+        {
+            get { return sel_org; }
+            set
+            {
+                sel_org = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MainViewModel()
         {
             try
             {
-                CollectCities = new ObservableCollection<Cities>(CurData.getCitiesCurrency());
+                CollectCities = CurData.getCitiesCurrency();
             }
             catch (Exception)
             {
+                
             }
         }
 
