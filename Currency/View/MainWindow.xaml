@@ -32,6 +32,7 @@
         </Grid.RowDefinitions>
 
 
+        
         <TextBlock Margin="30 15 30 5" Text="Город" 
                    FontSize="26" Foreground="#FF030044" 
                    FontFamily="Calibri" FontStretch="UltraCondensed" 

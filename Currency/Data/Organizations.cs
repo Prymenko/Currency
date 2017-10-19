@@ -30,33 +30,7 @@ namespace Currency.Data
                 OnPropertyChanged();
             }
         }
-
-        string region;
-        public string Region {
-            get
-            {
-                return region;
-            }
-            set
-            {
-                region = value;
-                OnPropertyChanged();
-            }
-        }
-
-        string city;
-        public string City {
-            get
-            {
-                return city;
-            }
-            set
-            {
-                city = value;
-                OnPropertyChanged();
-            }
-        }
-
+        
 
         string phone;
         public string Phone
