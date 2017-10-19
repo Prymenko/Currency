@@ -38,36 +38,7 @@ namespace Currency.ViewModel
                 selected = value;
                 OnPropertyChanged();
             }
-        }
-
-        //Currency c1 = new Currency
-        //{
-        //    Name = "USD",
-        //    Buy = 26.6,
-        //    Sell = 12.5
-        //};
-
-        //Currency c2 = new Currency
-        //{
-        //    Name = "RUB",
-        //    Buy = 90.6,
-        //    Sell = 16.1
-        //};
-
-        //Currency c3 = new Currency
-        //{
-        //    Name = "POL",
-        //    Buy = 21.1,
-        //    Sell = 53.3
-        //};
-
-        //Currency c4 = new Currency
-        //{
-        //    Name = "ZAY",
-        //    Buy = 10.6,
-        //    Sell = 0.109
-        //};
-        
+        }       
 
         public MainViewModel()
         {
