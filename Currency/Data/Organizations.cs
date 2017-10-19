@@ -57,12 +57,47 @@ namespace Currency.Data
             }
         }
 
-        
-        public string phone { get; set; }
 
-        public string adress { get; set; }
+        string phone;
+        public string Phone
+        {
+            get
+            {
+                return phone;
+            }
+            set
+            {
+                phone = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string link { get; set; }
+
+        string adress;
+        public string Adress {
+            get
+            {
+                return adress;
+            }
+            set
+            {
+                adress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        string link;
+        public string Link {
+            get
+            {
+                return link;
+            }
+            set
+            {
+                link = value;
+                OnPropertyChanged();
+            }
+        }
 
         public List<Currencies> currencies { get; set; }
         
