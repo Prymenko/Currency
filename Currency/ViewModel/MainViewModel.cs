@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -21,6 +22,16 @@ namespace Currency.ViewModel
         public Location CurrentLocation { get; set; } = new Location(50.44313043, 30.49511254);
         public double Zoom { get; set; } = 14;
 
+        private bool isProgressVisible;
+        public bool IsProgressVisible
+        {
+            get { return isProgressVisible; }
+            set
+            {
+                isProgressVisible = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Cities> CollectCities { get; set; }
 
@@ -51,11 +62,10 @@ namespace Currency.ViewModel
             try
             {
                 CollectCities = CurData.getCitiesCurrency();
+                IsProgressVisible = true;
             }
             catch (Exception)
-            {
-                
-            }
+            { }
         }
 
         private RelayCommand refreshCommand;
@@ -66,8 +76,18 @@ namespace Currency.ViewModel
                 return refreshCommand ??
             (refreshCommand = new RelayCommand(obj =>
             {
-                Thread.Sleep(5000);
-                this.CollectCities = CurData.getCitiesCurrency();
+                IsProgressVisible = true;
+                try
+                {
+                    this.Selected = null;
+                    this.Sel_org = null;
+                    this.CollectCities = CurData.getCitiesCurrency();
+                }
+                catch (Exception)
+                { }
+                IsProgressVisible = false;
+
+                
             }));
             }
         }
