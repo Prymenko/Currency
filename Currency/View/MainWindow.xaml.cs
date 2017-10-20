@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -26,6 +27,19 @@ namespace Currency
         {
             DataContext = new MainViewModel();
             InitializeComponent();
+            IsVisibleChanged += new DependencyPropertyChangedEventHandler(MainWindow_IsVisibleChanged);
+        }        
+
+        void MainWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            DoubleAnimation da = new DoubleAnimation()
+            {
+                From = (IsVisible) ? 0 : 2,
+                To = (IsVisible) ? 2 : 0,
+                Duration = TimeSpan.FromSeconds(2)
+            };
+
+            BeginAnimation(Window.OpacityProperty, da);
         }
 
         //public void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
