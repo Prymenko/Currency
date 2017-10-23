@@ -49,8 +49,8 @@
             <Controls:Flyout x:Name="Map" Header="Карта" Theme="Accent" 
                              Position="Right" Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
 
-                <m:Map CredentialsProvider="YOUR_BING_MAP_KEY" x:Name="myMap"
-            		Center="{Binding CurrentLocation}" ZoomLevel="{Binding Zoom}"/>
+                <m:Map CredentialsProvider="Au95pPlgz1ZHNWU3cXgbefrDK0mGdiM2zC5uQbSKqulT-hXNXZZdQoNnTTU8pQwu"
+                       x:Name="myMap" Center="{Binding CurrentLocation}" ZoomLevel="{Binding Zoom}"/>
 
             </Controls:Flyout>
         </Controls:FlyoutsControl>
@@ -117,7 +117,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.ColumnSpan="2" Text="Выберите банк"
+                            <TextBlock Grid.ColumnSpan="2" Text="Информация"
                                        FontSize="32" Style="{StaticResource SelectBank}">
                                 <TextBlock.Foreground>
                                     <SolidColorBrush Color="#FF5D5D5D" />
@@ -141,8 +141,8 @@
 			SelectedItem="{Binding Sel_org}"/>
 
         <TextBlock Grid.Row="2" Grid.ColumnSpan="3"
-                   Text="Выберите банк"
-                   FontSize="54" Style="{StaticResource SelectBank}">
+                   Text="{Binding State}"
+                   FontSize="42" Style="{StaticResource SelectBank}">
             <TextBlock.Foreground>
                 <SolidColorBrush x:Name="OwnBrush" Color="#FF5D5D5D" />
             </TextBlock.Foreground>
@@ -160,6 +160,8 @@
             </TextBlock.Triggers>
         </TextBlock>
 
+        
+
         <Controls:FlipView x:Name="FlipViewTest"
 			Grid.Row="2"
 			Grid.ColumnSpan="3"
@@ -167,7 +169,6 @@
 			IsBannerEnabled="False"
 			MouseHoverBorderThickness="0"
 			ItemsSource="{Binding Sel_org.currencies}">
-            <!--SelectionChanged="FlipView_SelectionChanged"-->
 
             <Controls:FlipView.ItemTemplate>
                 <DataTemplate>
