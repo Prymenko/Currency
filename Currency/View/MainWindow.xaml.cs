@@ -34,26 +34,14 @@ namespace Currency
         {
             DoubleAnimation da = new DoubleAnimation()
             {
-                From = (IsVisible) ? 0 : 2,
-                To = (IsVisible) ? 2 : 0,
-                Duration = TimeSpan.FromSeconds(2)
+                From = (IsVisible) ? 0 : 3,
+                To = (IsVisible) ? 3 : 0,
+                Duration = TimeSpan.FromSeconds(3)
             };
 
             BeginAnimation(Window.OpacityProperty, da);
         }
 
-        //public void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    var flipview = ((FlipView)sender);
-        //    switch (flipview.SelectedIndex)
-        //    {
-        //        case 0:
-        //            break;
-        //        case 1:
-        //            break;
-        //        case 2:
-        //            break;
-        //    }
-        //}
+        
     }
 }

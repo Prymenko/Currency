@@ -22,6 +22,17 @@ namespace Currency.ViewModel
         public Location CurrentLocation { get; set; } = new Location(50.44313043, 30.49511254);
         public double Zoom { get; set; } = 14;
 
+        public string State
+        {
+            get
+            {
+                if (this.CollectCities == null && this.Sel_org == null)
+                    return "Отсутствует подключение";
+
+                return "Выберите банк";
+            }
+        }
+
         private bool isProgressVisible;
         public bool IsProgressVisible
         {
@@ -53,7 +64,8 @@ namespace Currency.ViewModel
             set
             {
                 sel_org = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Sel_org");
+                OnPropertyChanged("State");
             }
         }
 
@@ -61,7 +73,8 @@ namespace Currency.ViewModel
         {
             try
             {
-                CollectCities = CurData.getCitiesCurrency();
+                //CollectCities = CurData.getCitiesCurrency();
+                OnPropertyChanged("State");
                 IsProgressVisible = true;
             }
             catch (Exception)
@@ -84,7 +97,14 @@ namespace Currency.ViewModel
                     this.CollectCities = CurData.getCitiesCurrency();
                 }
                 catch (Exception)
-                { }
+                {
+                    this.CollectCities = null;
+                }
+                finally
+                {
+                    OnPropertyChanged("State");
+                    OnPropertyChanged("CollectCities");
+                }
                 IsProgressVisible = false;
 
                 
